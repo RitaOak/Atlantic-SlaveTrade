@@ -15,46 +15,46 @@
 </head>
 
 <body>
-
-  <!-- Fixed navbar -->
-  <!--
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Slave Trade | 1566 - 1866</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-        </div>
-      </div>
-    </nav>
-  -->
   <div id="information">
     <div id="titulo">
       <h1>Tráfico de Escravos</h1>
       <h1 class="cor_vermelho">1566-1866</h1>
     </div>
     <div id="options">
+      <!--OPÇÕES DE VISUALIZAÇÃO E INFORMAÇÃO-->
       <div>
-        <div>
+        <div id="option1">
           <h6>Opções de visualização</h6>
-          <label id="option1"></label>
+          <div>
+            <a id="total_desem" class="button button_selected">Total de desembarcados</a>
+            <a id="total_em" class="button">Total de embarcados</a>
+          </div>
+          <div class="padding_top">
+              <a id="percentagem_homens" class="button button_selected">Percentagem de homens</a>
+              <a id="percentagem_criancas" class="button">Percentagem de crianças</a>
+            </div>
+          <div></div>
         </div>
-        <div>
+        <div id="option2">
           <h6>Total de dias de viagem</h6>
-          <label id="option2" class="cor_cinzento">1456789</label>
+          <label id="label_option2" class="cor_cinzento">1456789</label>
         </div>
-        <div>
+        <div id="option3">
           <h6>Tonelagem de navio</h6>
-          <label id="option3" class="cor_cinzento">512673</label>
+          <label id="label_option3" class="cor_cinzento">512673</label>
         </div>
-        <div>
+        <div id="option4">
           <h6>Média de dias de viagem</h6>
-          <label id="option4" class="cor_cinzento">7</label>
+          <label id="label_option4" class="cor_cinzento">7</label>
         </div>
-        <div>
+        <div id="option5">
           <h6>Total de mortos</h6>
-          <label id="option5" class="cor_cinzento">239</label>
+          <label id="label_option5" class="cor_cinzento">239</label>
         </div>
+      </div>
+      <!--NOT DONE-->
+      <div id="timeline">
+
       </div>
     </div>
   </div>
@@ -190,6 +190,7 @@
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCholOz_fFz5Y0YK69dM2Phsh4usSNpWEI&callback=initMap">
   </script>
+  <script src="js/javascript.js"></script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,10 +1,14 @@
-html, body {
+html {
     height: 100%;
     width: 100%;
 }
 
-body{
+body {
     font-family: "Oswald";
+}
+
+a {
+    cursor: pointer;
 }
 
 .navbar-inverse {
@@ -14,8 +18,8 @@ body{
 #information {
     margin: 50px;
     position: absolute;
-    z-index: -1;
     color: #CCCCCC;
+    z-index: -1;
 }
 
 #titulo {
@@ -35,4 +39,38 @@ body{
 
 .cor_cinzento {
     color: #666666;
+}
+
+#option1 div {
+    margin: 10px 0px;
+}
+
+#option1 div a {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    width: 70%;
+    text-align: center;
+}
+
+.button {
+    margin: 10px 0px;
+    padding: 5px 30px;
+    font-size: 12px;
+    border-radius: 50px;
+    border: 1px solid #666666;
+    background-color: #0D0A0B;
+}
+
+.button_selected {
+    border: 1px solid #0D0A0B;
+    background-color: #CC2936;
+    color: #0D0A0B !important;
+}
+
+.padding_top {
+    padding: 10px 0px;
 }
