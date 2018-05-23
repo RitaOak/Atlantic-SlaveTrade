@@ -3,12 +3,36 @@ html, body {
     width: 100%;
 }
 
+body{
+    font-family: "Oswald";
+}
+
 .navbar-inverse {
   background-color: rgba(0,0,0,.7);
+}
+
+#information {
+    margin: 50px;
+    position: absolute;
+    z-index: -1;
+    color: #CCCCCC;
+}
+
+#titulo {
+    margin-bottom: 50px;
 }
 
 #map {
     height: 100vh;
     width: 100vw;
     position: absolute;
+    z-index: -2;
+}
+
+.cor_vermelho {
+    color: #CC2936;
+}
+
+.cor_cinzento {
+    color: #666666;
 }
