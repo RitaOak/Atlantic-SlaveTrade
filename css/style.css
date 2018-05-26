@@ -91,12 +91,12 @@ a {
     background: none;
 }
 
-.tooltip-inner {
+.tooltip-inner, .tooltip-arrow {
     color: #CC2936;
     background: none;
 }
 
-.slider-handle, .slider-selection.tick-slider-selection {
+.slider-handle, .slider-selection, .tick-slider-selection {
     background-color: #CC2936 !important;
     background-image: none !important;
 }
