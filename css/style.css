@@ -5,6 +5,7 @@ html {
 
 body {
     font-family: 'Oswald', sans-serif;
+    overflow: hidden;
 }
 
 a {
@@ -73,4 +74,33 @@ a {
 
 .padding_top {
     padding: 10px 0px;
+}
+
+.slider {
+    margin-left: 10px;
+}
+
+.slider, .slider-horizontal, .slider-track {
+    height: 5px !important;
+    width: calc(100vw - 120px) !important;
+    margin-top: 5px !important;
+}
+
+.tooltip {
+    opacity: 1;
+    background: none;
+}
+
+.tooltip-inner {
+    color: #CC2936;
+    background: none;
+}
+
+.slider-handle, .slider-selection.tick-slider-selection {
+    background-color: #CC2936 !important;
+    background-image: none !important;
+}
+
+.slider-tick {
+    opacity: 1 !important;
 }
