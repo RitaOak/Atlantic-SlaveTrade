@@ -12,10 +12,6 @@ a {
     cursor: pointer;
 }
 
-.navbar-inverse {
-  background-color: rgba(0,0,0,.7);
-}
-
 #information {
     margin: 50px;
     position: absolute;
@@ -42,6 +38,11 @@ a {
     color: #666666;
 }
 
+#options {
+    width: 300px;
+    height: auto;
+}
+
 #option1 div {
     margin: 10px 0px;
 }
@@ -53,7 +54,6 @@ a {
     justify-content: flex-start;
     align-content: flex-start;
 
-    width: 70%;
     text-align: center;
 }
 
@@ -72,8 +72,24 @@ a {
     color: #0D0A0B !important;
 }
 
+#pt, #en {
+    font-size: 10px !important;
+    padding: 5px 10px;
+}
+
 .padding_top {
     padding: 10px 0px;
+}
+
+#label_option5 {
+    margin-bottom: calc(100vh - 800px);
+}
+
+#timeline {
+    margin: 0px 50px 50px 50px;
+    position: absolute;
+    bottom: 0;
+    color: #CCCCCC;
 }
 
 .slider {

@@ -21,14 +21,15 @@
 <body>
   <div id="information">
     <div id="titulo">
-      <h1>Tráfico de Escravos</h1>
-      <h1 class="cor_vermelho">1566-1866</h1>
+      <h1 id="titulo_principal">Tráfico de Escravos</h1>
+      <h1 class="cor_vermelho">1566-1866</h1> 
+      <a id="pt" class="button button_selected">PT</a> - <a id="en" class="button">EN</a>
     </div>
     <div id="options">
       <!--OPÇÕES DE VISUALIZAÇÃO E INFORMAÇÃO-->
-      <div style="width: 300px; height: calc(100vh - 300px);">
+      <div style="width: 300px;">
         <div id="option1">
-          <h6>Opções de visualização</h6>
+          <h6 id="opcoes_vis">Opções de visualização</h6>
           <div>
             <a id="total_desem" class="button button_selected" data-value="1">Total de desembarcados</a>
             <a id="total_em" class="button" data-value="2">Total de embarcados</a>
@@ -40,28 +41,28 @@
           <div></div>
         </div>
         <div id="option2">
-          <h6>Total de dias de viagem</h6>
+          <h6 id="total_dias_viagem">Total de dias de viagem</h6>
           <label id="label_option2" class="cor_cinzento">1456789</label>
         </div>
         <div id="option3">
-          <h6>Tonelagem de navio</h6>
+          <h6 id="tonelagem_navio">Tonelagem de navio</h6>
           <label id="label_option3" class="cor_cinzento">512673</label>
         </div>
         <div id="option4">
-          <h6>Média de dias de viagem</h6>
+          <h6 id="media_dias_viagem">Média de dias de viagem</h6>
           <label id="label_option4" class="cor_cinzento">7</label>
         </div>
         <div id="option5">
-          <h6>Total de mortos</h6>
+          <h6 id="total_mortos">Total de mortos</h6>
           <label id="label_option5" class="cor_cinzento">239</label>
         </div>
       </div>
-      <!--NOT DONE-->
-      <div id="timeline">
-        <input id="ex2" data-slider-id='ex1Slider' type="text" data-slider-ticks="[1566, 1866]" data-slider-ticks-labels='["1566", "1866"]' data-slider-min="1566" data-slider-max="1866" data-slider-step="1"
-          data-slider-value="[1566,1866]" data-slider-value="14" />
-      </div>
+
     </div>
+  </div>
+  <div id="timeline">
+    <input id="ex2" data-slider-id='ex1Slider' type="text" data-slider-ticks="[1566, 1866]" data-slider-ticks-labels='["1566", "1866"]' data-slider-min="1566" data-slider-max="1866" data-slider-step="1"
+      data-slider-value="[1566,1866]" data-slider-value="14" />
   </div>
   <div id="map"></div>
   <script>
