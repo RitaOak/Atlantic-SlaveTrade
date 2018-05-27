@@ -39,8 +39,12 @@ a {
 }
 
 #options {
-    width: 300px;
+    width: auto;
     height: auto;
+}
+
+#options div:first-child{
+    width: 200px;
 }
 
 #option1 div {
