@@ -84,4 +84,24 @@ $(document).ready(function () {
           $("#total_mortos").text("Total of dead");
         }
   });
+
+
+  /* Para ir buscar os valores da bola mais à direita, como não existe id definido pelo javascript do plugin, 
+  temos que ir buscar a última div [#ex1Slider div:nth-child(7) ou #ex1Slider div:last-child()] da div principal 
+  do Slider [cujo id="ex1Slider"] que contem 'aria-valuemax="1866"'. Para ir buscar o valor da bola, é apenas 
+  ir buscar o value do 'aria-valuenow="1711"' . 
+  
+  
+  Para ir buscar os valores da bola mais à esquerda, a lógica é igual mas é necessário ir à penúltima div dentro
+  da div do slider,vou seja, [#ex1Slider div:nth-child(6)].
+  */
+
+
+
+  /* -------------------------------------------------- OU ---------------------------------------------------- */
+
+
+
+  /* Simplesmente vamos buscar os valores do 'aria-valuemax' à última e penúltima div do slider. No entanto, 
+  não sei até que ponto isto interfere com outra coisa porque no outro exemplo existe mais coisas a pesquisar por */
 });
