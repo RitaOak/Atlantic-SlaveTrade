@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap-slider/bootstrap-slider.css">
+    <!-- plus a jQuery UI theme, here I use "flick" -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+
+    <title>Slave Trade | 1566 - 1866</title>
+</head>
+
+<body>
+<div id="information">
+    <div>
+        <h1 id="titulo">Slave Traffic</h1>
+        <h1 class="cor_vermelho">1566-1866</h1>
+    </div>
+    <div id="options">
+        <!--OPÇÕES DE VISUALIZAÇÃO E INFORMAÇÃO-->
+        <div style="width: 300px; height: calc(100vh - 300px);">
+            <div id="option1">
+                <h6>Visualization Options</h6>
+                <div>
+                    <a id="gen_overview" class="button button_selected" data-value="1">General Overview</a>
+                    <a id="filter_byCountryButton" class="button" data-value="2" onclick="showFiltersCountries()">Filter
+                        by Country</a>
+                </div>
+            </div>
+            <div id="overview_Stats">
+                <div id="option1_Overview">
+                    <h6>Slaves Embarked</h6>
+                    <label id="label_option2" class="cor_cinzento">1456789</label>
+                </div>
+                <div id="option3">
+                    <h6>Slaves Disembarked</h6>
+                    <label id="label_option3" class="cor_cinzento">512673</label>
+                </div>
+                <div id="option4">
+                    <h6>Death Ratio</h6>
+                    <label id="label_option4" class="cor_cinzento">7</label>
+                </div>
+                <div id="option5">
+                    <h6>Number of Dead</h6>
+                    <label id="label_option5" class="cor_cinzento">239</label>
+                </div>
+            </div>
+            <div>
+                <form id="filterCountries_Options">
+                    <div id="country_check_list" class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Portugal
+                        </label>
+                    </div>
+                    <a id="filter_byCountryButtonFilter" class="button" data-value="2">Apply Filters</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--NOT DONE-->
+
+</div>
+</div>
+<div id="map"></div>
+<footer class="footer">
+    <div id="timeline">
+        <input id="ex2" data-slider-id='ex1Slider' type="text" data-slider-ticks="[1566, 1866]"
+               data-slider-ticks-labels='["1566", "1866"]' data-slider-min="1566" data-slider-max="1866"
+               data-slider-step="1"
+               data-slider-value="[1566,1866]" data-slider-value="14"/>
+    </div>
+</footer>
+<script type="text/javascript" src="static/sample.json"></script>
+<script type="text/javascript" src="static/js/data.js"></script>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+  crossorigin="anonymous"></script>-->
+<script src="static/js/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>
+<script>
+    $("#ex2").slider({
+        tooltip: 'always'
+    });
+</script>
+
+<!-- include the jQuery and jQuery UI scripts -->
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+
+<!-- Optional JavaScript -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCholOz_fFz5Y0YK69dM2Phsh4usSNpWEI&callback=init_page"></script>
+<script src="static/js/javascript.js" type="text/javascript"></script>
+</body>
+
+</html>

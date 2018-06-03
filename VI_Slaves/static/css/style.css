@@ -1,0 +1,130 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    overflow: hidden;
+}
+
+a {
+    cursor: pointer;
+}
+
+.navbar-inverse {
+  background-color: rgba(0,0,0,.7);
+}
+
+#information {
+    margin: 50px;
+    position: absolute;
+    color: #CCCCCC;
+    z-index: -4;
+}
+
+#titulo {
+    margin-bottom: 50px;
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: -5;
+}
+
+.cor_vermelho {
+    color: #CC2936;
+}
+
+.cor_cinzento {
+    color: #666666;
+}
+
+#option1 div {
+    margin: 10px 0px;
+}
+
+#option1 div a {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 70%;
+    text-align: center;
+}
+
+.button {
+    margin: 10px 0px;
+    padding: 5px 30px;
+    font-size: 12px;
+    border-radius: 50px;
+    border: 1px solid #666666;
+    background-color: #0D0A0B;
+}
+
+.button_selected {
+    border: 1px solid #0D0A0B;
+    background-color: #CC2936;
+    color: #0D0A0B !important;
+}
+
+.padding_top {
+    padding: 10px 0px;
+}
+
+.slider {
+    margin-left: 10px;
+}
+
+.slider, .slider-horizontal, .slider-track {
+    height: 5px !important;
+    width: calc(100vw - 120px) !important;
+    margin-top: 5px !important;
+}
+
+.tooltip {
+    opacity: 1;
+    background: none;
+}
+
+.tooltip-inner {
+    color: #CC2936;
+    background: none;
+}
+
+.slider-handle, .slider-selection.tick-slider-selection {
+    background-color: #CC2936 !important;
+    background-image: none !important;
+}
+
+.slider-tick {
+    opacity: 1 !important;
+}
+
+#markerLayer {
+    z-index: 999;
+}
+
+#filter_byCountryButton.button {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.slider-tick-label {
+    color: #CCCCCC;
+}
+
+.footer{
+    position: fixed !important;
+    bottom: 0 !important;
+    margin: 50px !important;
+    height: auto;
+    background-color: transparent;
+}
+
+#checkDisembarked {
+    margin-left: 10px;
+}
