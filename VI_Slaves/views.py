@@ -62,6 +62,7 @@ def get_routes(request):
 
     # Create result stub
     result_data = {
+        "graph_data": {},
         "voyages": {
             "total": 0,
             "with duration": 0,
@@ -138,10 +139,16 @@ def get_routes(request):
                     "casualties": 0
                 },
                 "regions": voyage_region_list,
+                "places_embark": [],
+                "places_disembark": [],
                 "countries": []
             })
         if countries and voyage.nation.name not in route_dict["countries"]:
             route_dict["countries"].append(voyage.nation.name)
+        if voyage.place_disembark not in route_dict["places_disembark"]:
+            route_dict["places_disembark"].append(voyage.place_disembark)
+        if voyage.place_embark not in route_dict["places_embark"]:
+            route_dict["places_embark"].append(voyage.place_embark)
         result_data["voyages"]["total"] = result_data["voyages"]["total"] + 1
         route_dict["voyages"]["total"] = route_dict["voyages"]["total"] + 1
         if voyage.duration:

@@ -252,20 +252,43 @@ function draw_routes() {
 
 function addToolTip(maps_object, data_object) {
     // Assemble the Tooltip content string
-    var countries_str = "<p>Countries: "+data_object.countries[0];
     var route_str = "<p>Route: "+data_object.regions[0]+" - "+data_object.regions[1]+"</p>";
+    var countries_str = "<p>Countries: "+data_object.countries[0];
     for(var i=1; i<data_object.countries.length; i++){
         countries_str += ", "+data_object.countries[i];
     }
     countries_str += "</p>";
+    // Create string for places of embark
+    var places_embark_str = "<p>";
+    if(data_object.places_embark.length > 0){
+        places_embark_str += "Places of embark: "+data_object.places_embark[0];
+        for(var i = 1; i<data_object.places_embark.length; i++){
+            places_embark_str += "; "+data_object.places_embark[i];
+        }
+    } else if (data_object.places_embark.length){
+        places_embark_str += "Place of embark: "+data_object.places_embark[0];
+    }
+    // Create string for places of disembark
+    var places_disembark_str = "<p>";
+    if(data_object.places_disembark.length > 0){
+        places_disembark_str += "Places of disembark: "+data_object.places_disembark[0];
+        for(var i = 1; i<data_object.places_disembark.length; i++){
+            places_disembark_str += "; "+data_object.places_disembark[i];
+        }
+    } else if (data_object.places_disembark.length){
+        places_disembark_str += "Place of embark: "+data_object.places_disembark[0];
+    }
     var death_ratio = "Not Available";
     if(data_object.slaves.embarked > 0){
         death_ratio = ((data_object.slaves.casualties/data_object.slaves.embarked) * 100).toFixed(2) + "%";
     }
-    var slaves_str = "<p>Slaves Embarked: "+data_object.slaves.embarked+"</p>"+
+    var slaves_str = "<p>Voyages: "+data_object.voyages.total+"</p>"+
+        "<p>Average Duration: "+data_object.duration.average+" days</p>"+
+        "<p>Max Duration"+data_object.duration.max+" days</p>"+
+        "<p>Slaves Embarked: "+data_object.slaves.embarked+"</p>"+
         "<p>Slaves Disembarked: "+data_object.slaves.disembarked+"</p>"+
         "<p>Death Ratio: "+death_ratio+"</p>";
-    maps_object.tooltipContent = route_str + "\n" + countries_str + "\n" + slaves_str;
+    maps_object.tooltipContent = route_str + "\n" + countries_str + "\n" + slaves_str + "\n" + places_embark_str + "\n" + places_disembark_str;
     google.maps.event.addListener(maps_object, 'click', function () {
         infoWindow.open(map, maps_object);
     });
