@@ -12,8 +12,12 @@ a {
     cursor: pointer;
 }
 
+h1 {
+    font-size: 70px;
+}
+
 .navbar-inverse {
-  background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, .7);
 }
 
 #information {
@@ -24,7 +28,7 @@ a {
 }
 
 #titulo {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 #map {
@@ -36,6 +40,9 @@ a {
 
 .cor_vermelho {
     color: #CC2936;
+
+    margin-bottom: 50px;
+    font-size: 40px;
 }
 
 .cor_cinzento {
@@ -68,7 +75,8 @@ a {
 .button_selected {
     border: 1px solid #0D0A0B;
     background-color: #CC2936;
-    color: #0D0A0B !important;
+    color: #F6F6F6 !important;
+    width: 70%;
 }
 
 .padding_top {
@@ -117,7 +125,7 @@ a {
     color: #CCCCCC;
 }
 
-.footer{
+.footer {
     position: fixed !important;
     bottom: 0 !important;
     margin: 50px !important;
@@ -127,4 +135,49 @@ a {
 
 #checkDisembarked {
     margin-left: 10px;
+}
+
+#tooltip-div {
+    display: none;
+    position: absolute;
+    bottom: 70px;
+    right: 20px;
+    margin-right: 20px;
+    color: #CCCCCC;
+    width: 300px;
+    height: auto;
+    background-color: #1C2326;
+    margin: 20px;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#tooltip-div p {
+    margin: 20px;
+}
+
+#country_list_div {
+    position: absolute;
+    bottom: 70px;
+    color: #CCCCCC;
+    width: 300px;
+    height: auto;
+    background-color: transparent;
+
+    z-index: 6;
+}
+
+#country_list_div form {
+    margin-left: 20px;
+}
+
+#filter_byCountryButtonFilter {
+    margin-top: 20px;
+    color: white;
+    width: 70%;
+}
+
+#country_check_list {
+    margin-bottom: 30px;
 }

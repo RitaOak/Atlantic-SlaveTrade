@@ -92,7 +92,7 @@ def get_routes(request):
     if countries and len(countries):
         end_queryset = end_queryset.filter(nation__name__in=countries)
     else:
-        return JsonResponse(result_data)
+        countries = None
     # Filter by date of departure
     year_min = filters.get("date_min", None)
     if year_min:
@@ -137,31 +137,40 @@ def get_routes(request):
                     "total": 0,
                     "casualties": 0
                 },
-                "regions": voyage_region_list
+                "regions": voyage_region_list,
+                "countries": []
             })
+        if countries and voyage.nation.name not in route_dict["countries"]:
+            route_dict["countries"].append(voyage.nation.name)
         result_data["voyages"]["total"] = result_data["voyages"]["total"] + 1
         route_dict["voyages"]["total"] = route_dict["voyages"]["total"] + 1
         if voyage.duration:
             result_data["voyages"]["with duration"] = result_data["voyages"]["with duration"] + 1
-            route_dict["voyages"]["with duration"] = route_dict["voyages"]["with duration"] + 1
             result_data["duration"]["total"] = result_data["duration"]["total"] + voyage.duration
-            route_dict["duration"]["total"] = route_dict["duration"]["total"] + voyage.duration
+            if countries:
+                route_dict["voyages"]["with duration"] = route_dict["voyages"]["with duration"] + 1
+                route_dict["duration"]["total"] = route_dict["duration"]["total"] + voyage.duration
             if voyage.duration > route_dict["duration"]["max"]:
-                route_dict["duration"]["max"] = voyage.duration
+                if countries:
+                    route_dict["duration"]["max"] = voyage.duration
                 if voyage.duration > result_data["duration"]["max"]:
                     result_data["duration"]["max"] = voyage.duration
         if voyage.slaves_embarked:
             result_data["slaves"]["embarked"] = result_data["slaves"]["embarked"] + voyage.slaves_embarked
-            route_dict["slaves"]["embarked"] = route_dict["slaves"]["embarked"] + voyage.slaves_embarked
             result_data["slaves"]["total"] = result_data["slaves"]["total"] + voyage.slaves_embarked
-            route_dict["slaves"]["total"] = route_dict["slaves"]["total"] + voyage.slaves_embarked
+            if countries:
+                route_dict["slaves"]["embarked"] = route_dict["slaves"]["embarked"] + voyage.slaves_embarked
+                route_dict["slaves"]["total"] = route_dict["slaves"]["total"] + voyage.slaves_embarked
         if voyage.slaves_disembarked:
             result_data["slaves"]["disembarked"] = result_data["slaves"]["disembarked"] + voyage.slaves_disembarked
-            route_dict["slaves"]["disembarked"] = route_dict["slaves"]["disembarked"] + voyage.slaves_disembarked
+            if countries:
+                route_dict["slaves"]["disembarked"] = route_dict["slaves"]["disembarked"] + voyage.slaves_disembarked
             if not voyage.slaves_embarked:
                 result_data["slaves"]["total"] = result_data["slaves"]["total"] + voyage.slaves_disembarked
-                route_dict["slaves"]["total"] = route_dict["slaves"]["total"] + voyage.slaves_disembarked
-        routes[voyage_region_list] = route_dict
+                if countries:
+                    route_dict["slaves"]["total"] = route_dict["slaves"]["total"] + voyage.slaves_disembarked
+        if countries:
+            routes[voyage_region_list] = route_dict
     # Assemble final statistics
     if result_data["voyages"]["with duration"] > 0:
         result_data["duration"]["average"] = float(result_data["duration"]["total"]) / float(result_data["voyages"]["with duration"])

@@ -2,21 +2,23 @@ regions = [];
 nations = [];
 nation_filter_list = [];
 dataset = [];
-map;
-
+map = null;
+infowindow = null;
 
 function setMarker(name, latitude, longitude, region = false) {
     var myLatLng = {lat: latitude, lng: longitude};
+    var color;
     if (region) {
         // Change the icon to the region icon
-        var color = "#F00";
+        color = "#ff3d29";
     } else {
         // Change the icon to the nation icon
-        var color = "#0F0";
+        color = "#faffa1";
     }
     var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
+        animation: google.maps.Animation.DROP,
         title: name,
         icon: {
             path: google.maps.SymbolPath.CIRCLE,
@@ -26,8 +28,18 @@ function setMarker(name, latitude, longitude, region = false) {
             strokeWeight: 0.4
         }
     });
+    marker.addListener("click", toggleBounce);
+
+    function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+
     marker.addListener("click", function () {
-        document.getElementById("titulo").innerHTML = name;
+        document.getElementById("region").innerHTML = "Region: " + name;
     });
     return marker;
 }
@@ -37,6 +49,10 @@ function initMap() {
         lat: 14.7806094,
         lng: -10.3132599
     };
+
+    infoWindow = new google.maps.InfoWindow({
+        content: 'This is an info window'
+    });
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2.8,
@@ -176,6 +192,17 @@ function initMap() {
     }
 }
 
+function setSideInfo(){
+    document.getElementById("label_option2").innerHTML = dataset.slaves.embarked;
+    document.getElementById("label_option3").innerHTML = dataset.slaves.disembarked;
+    if(dataset.slaves.embarked > 0) {
+        document.getElementById("label_option4").innerHTML = ((dataset.slaves.casualties / dataset.slaves.embarked) * 100).toFixed(2)+"%";
+    } else {
+        document.getElementById("label_option4").innerHTML = "Data Unavailable";
+    }
+    document.getElementById("label_option5").innerHTML = dataset.slaves.casualties;
+}
+
 function draw_routes() {
     /* Example code for Polylines
     var flightPlanCoordinates = [
@@ -213,13 +240,44 @@ function draw_routes() {
         var routePath = new google.maps.Polyline({
             path: route_coordinates,
             geodesic: true,
-            strokeColor: '#bbc4ba',
+            strokeColor: '#ff3d29',
             strokeOpacity: 0.6,
             strokeWeight: stroke_weight
         });
         routePath.setMap(map);
-        routes[i]["routePath"] = routePath
+        routes[i]["routePath"] = routePath;
+        addToolTip(routePath, routes[i]);
     }
+}
+
+function addToolTip(maps_object, data_object) {
+    // Assemble the Tooltip content string
+    var countries_str = "<p>Countries: "+data_object.countries[0];
+    var route_str = "<p>Route: "+data_object.regions[0]+" - "+data_object.regions[1]+"</p>";
+    for(var i=1; i<data_object.countries.length; i++){
+        countries_str += ", "+data_object.countries[i];
+    }
+    countries_str += "</p>";
+    var death_ratio = "Not Available";
+    if(data_object.slaves.embarked > 0){
+        death_ratio = ((data_object.slaves.casualties/data_object.slaves.embarked) * 100).toFixed(2) + "%";
+    }
+    var slaves_str = "<p>Slaves Embarked: "+data_object.slaves.embarked+"</p>"+
+        "<p>Slaves Disembarked: "+data_object.slaves.disembarked+"</p>"+
+        "<p>Death Ratio: "+death_ratio+"</p>";
+    maps_object.tooltipContent = route_str + "\n" + countries_str + "\n" + slaves_str;
+    google.maps.event.addListener(maps_object, 'click', function () {
+        infoWindow.open(map, maps_object);
+    });
+
+    google.maps.event.addListener(maps_object, 'mouseover', function () {
+        $('#tooltip-div').html(maps_object.tooltipContent).show();
+    });
+
+    google.maps.event.addListener(maps_object, 'mouseout', function () {
+        $('#tooltip-div').hide();
+    });
+
 }
 
 function filter_data() {
@@ -269,6 +327,7 @@ function filter_data() {
         dataType: "json"
     }).success(function (result, status) {
         dataset = result;
+        setSideInfo();
         draw_routes();
     }).fail(function (result, status) {
         console.log("Request broke, go fix.");
@@ -291,6 +350,8 @@ function init_page() {
     request.send();
     */
 
+    // Hide the country list div at start
+    //$("#country_list_div").hide();
     $.get("nations/", function (result, status) {
         nations = result["nations"];
         // Fill Nation list through Javascript and the nations variable
@@ -298,12 +359,31 @@ function init_page() {
         nation_list.html("");
         for(var i = 0; i < nations.length; i++){
             nation_list.append("<input class=\"form-check-input\" type=\"checkbox\" value=\""+nations[i].name+"\" id=\"nation_check"+nations[i].id+"\">" +
-                "<label class=\"form-check-label\" for=\"nation_check"+nations[i].id+"\">\n"+nations[i].name+"</label>")
+                "<label class=\"form-check-label\" for=\"nation_check"+nations[i].id+"\">\n"+nations[i].name+"</label><br>")
         }
         $.get("regions/", function (result, status) {
             regions = result["regions"];
-            $("#filter_byCountryButtonFilter").click(filter_data);
+            $.ajax({
+                type: "POST",
+                url: "routes/",
+                data: {"json": JSON.stringify({})},
+                dataType: "json"
+            }).success(function (result, status) {
+                dataset = result;
+                $("#filter_byCountryButtonFilter").click(filter_data);
+                setSideInfo();
+            }).fail(function (result, status) {
+                console.log("Request broke, go fix.");
+                // TODO: Show an information window saying it broke
+            }).always(function (result, status) {
+                console.log("Getting filter returned " + status);
+            });
             initMap();
-        })
+        });
     });
 }
+
+/*function toggleFiltersCountries(){
+    var country_list_div = $("#country_list_div");
+    country_list_div.toggle();
+}*/

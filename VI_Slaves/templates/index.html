@@ -16,14 +16,14 @@
     <!-- plus a jQuery UI theme, here I use "flick" -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
 
-    <title>Slave Trade | 1566 - 1866</title>
+    <title>Slave Traffic | 1566 - 1866</title>
 </head>
 
 <body>
 <div id="information">
     <div>
         <h1 id="titulo">Slave Traffic</h1>
-        <h1 class="cor_vermelho">1566-1866</h1>
+        <h2 class="cor_vermelho">1566-1866</h2>
     </div>
     <div id="options">
         <!--OPÇÕES DE VISUALIZAÇÃO E INFORMAÇÃO-->
@@ -31,32 +31,32 @@
             <div id="option1">
                 <h6>Visualization Options</h6>
                 <div>
-                    <a id="gen_overview" class="button button_selected" data-value="1">General Overview</a>
-                    <a id="filter_byCountryButton" class="button" data-value="2" onclick="showFiltersCountries()">Filter
-                        by Country</a>
+                    <button id="gen_overview" class="button button_selected" data-value="1">General Overview</button>
+
                 </div>
             </div>
             <div id="overview_Stats">
                 <div id="option1_Overview">
                     <h6>Slaves Embarked</h6>
-                    <label id="label_option2" class="cor_cinzento">1456789</label>
+                    <label id="label_option2" class="cor_cinzento">Getting Data...</label>
                 </div>
                 <div id="option3">
                     <h6>Slaves Disembarked</h6>
-                    <label id="label_option3" class="cor_cinzento">512673</label>
+                    <label id="label_option3" class="cor_cinzento">Getting Data...</label>
                 </div>
                 <div id="option4">
                     <h6>Death Ratio</h6>
-                    <label id="label_option4" class="cor_cinzento">7</label>
+                    <label id="label_option4" class="cor_cinzento">Getting Data...</label>
                 </div>
                 <div id="option5">
                     <h6>Number of Dead</h6>
-                    <label id="label_option5" class="cor_cinzento">239</label>
+                    <label id="label_option5" class="cor_cinzento">Getting Data...</label>
                 </div>
+                <h4 id="region"></h4>
             </div>
-            <div>
+            <div id="country_list_div">
                 <form id="filterCountries_Options">
-                    <div id="country_check_list" class="form-check">
+                    <div id="country_check_list">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                         <label class="form-check-label" for="defaultCheck1">
                             Portugal
@@ -69,9 +69,11 @@
     </div>
     <!--NOT DONE-->
 
+
 </div>
 </div>
 <div id="map"></div>
+<div id="tooltip-div"></div>
 <footer class="footer">
     <div id="timeline">
         <input id="ex2" data-slider-id='ex1Slider' type="text" data-slider-ticks="[1566, 1866]"
